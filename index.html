@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <meta name="author" content="JavaScript Ninja" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      .my-5 {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .my-4 {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      #password {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="my-5">Password Generator</h1>
+      <div class="form-group">
+        <label for="length">Password Length</label>
+        <input
+          type="number"
+          class="form-control"
+          id="length"
+          placeholder="Enter password length"
+        />
+      </div>
+      <button class="btn btn-primary" id="generate-btn">
+        Generate Password
+      </button>
+      <div class="my-4">
+        <label for="password">Generated Password</label>
+        <input
+          type="text"
+          class="form-control"
+          id="password"
+          readonly
+          placeholder="Password will appear here"
+        />
+      </div>
+    </div>
+    <script>
+      const generateBtn = document.getElementById("generate-btn");
+      const passwordField = document.getElementById("password");
+
+      generateBtn.addEventListener("click", () => {
+        const length = document.getElementById("length").value;
+
+        // Define the character set for the password
+        const charset =
+          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+
+        let password = "";
+
+        // Generate the password
+        for (let i = 0; i < length; i++) {
+          const randomIndex = Math.floor(Math.random() * charset.length);
+          password += charset[randomIndex];
+        }
+
+        // Display the generated password
+        passwordField.value = password;
+      });
+    </script>
+  </body>
+</html>
